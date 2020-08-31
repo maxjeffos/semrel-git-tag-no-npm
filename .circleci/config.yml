@@ -40,8 +40,8 @@ jobs:
               ls -la
               sed -i "s|REPLACE_ORB_VERSION|${next_version}|g" thing-with-version.yml
               echo "modified yaml file:"
-              cat thing-with-version.yml
-              # npx semantic-release --branch ${CIRCLE_BRANCH}
+              # cat thing-with-version.yml
+              npx semantic-release --branch ${CIRCLE_BRANCH}
             else
               echo "don't do release"
             fi
