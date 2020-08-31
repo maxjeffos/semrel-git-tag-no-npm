@@ -35,12 +35,12 @@ jobs:
             if grep "The next release version is" sem-rel-dry-run.txt
             then
               echo "do release"
+              next_version=$(npx semantic-release --branch ${CIRCLE_BRANCH} --dry-run | grep "The next release version is" | sed -n -e 's/^.*is //p')
+              echo "next_version: ${next_version}"              
             else
               echo "don't do release"
             fi
 
-            # next_version=$(npx semantic-release --branch ${CIRCLE_BRANCH} --dry-run | grep "The next release version is" | sed -n -e 's/^.*is //p')
-            # echo "next_version: ${next_version}"
             # sed -i "s/THE_ORB_VERSION\"${next_version}\"/g" thing-with-version.yaml
             # npx semantic-release --branch ${CIRCLE_BRANCH}
 
