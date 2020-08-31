@@ -14,11 +14,10 @@ jobs:
           name: Build and Test
           command: |
             echo "build stuff here"
-            npm install
       - run:
           name: Try semantic-release dry run
           command: |
-            npx semantic-release --branch ${CIRCLE_BRANCH} --dry-run
+            npx -p @semantic-release/git -p semantic-release semantic-release --branch ${CIRCLE_BRANCH} --dry-run
 
   release:
     docker:
@@ -28,9 +27,7 @@ jobs:
       - run:
           name: Build and Release
           command: |
-            npm install
-            npx semantic-release --branch ${CIRCLE_BRANCH} --dry-run
-            npx semantic-release --dry-run --branch ${CIRCLE_BRANCH} > sem-rel-dry-run.txt
+            npx -p @semantic-release/git -p semantic-release semantic-release --branch ${CIRCLE_BRANCH} --dry-run  > sem-rel-dry-run.txt
             cat sem-rel-dry-run.txt
             if grep "The next release version is" sem-rel-dry-run.txt
             then
@@ -58,4 +55,3 @@ workflows:
           filters:
             branches:
               only: master
-              
