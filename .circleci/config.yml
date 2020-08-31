@@ -40,7 +40,6 @@ workflows:
     jobs:
       - build_and_test
       - release:
-          context: nodejs-lib-release
           requires:
             - build_and_test
           filters:
