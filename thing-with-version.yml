@@ -21,7 +21,7 @@ commands:
                 environment:
                     MY_ENV_VAR: CIRCLECI_ORB
                     ORB_VERSION: THE_ORB_VERSION
-                name: Show Message
+                name: Show a Message
 examples:
     example:
         description: |
