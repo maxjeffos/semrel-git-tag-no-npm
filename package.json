@@ -1,0 +1,23 @@
+{
+  "name": "semrel-git-tag-no-npm",
+  "version": "1.0.0",
+  "description": "For figuring out how to use the NPM semantic-release tool via NPX without an NPM project.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxjeffos/semrel-git-tag-no-npm.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maxjeffos/semrel-git-tag-no-npm/issues"
+  },
+  "homepage": "https://github.com/maxjeffos/semrel-git-tag-no-npm#readme",
+  "devDependencies": {
+    "@semantic-release/git": "^9.0.0"
+  }
+}
