@@ -17,9 +17,10 @@ commands:
                 command: |
                     echo "message: <<parameters.message>>"
                     echo "MY_ENV_VAR: ${MY_ENV_VAR}"
-                    echo "VERSION: ${VERSION}"
+                    echo "ORB_VERSION: ${ORB_VERSION}"
                 environment:
                     MY_ENV_VAR: CIRCLECI_ORB
+                    ORB_VERSION: THE_ORB_VERSION
                 name: Show Message
 examples:
     example:

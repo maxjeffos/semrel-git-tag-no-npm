@@ -1,0 +1,44 @@
+version: 2.1
+
+jobs:
+  build_and_test:
+    docker:
+      - image: circleci/node:lts
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+          name: Build and Test
+          command: |
+            echo "build stuff here"
+      - run:
+          name: Try semantic-release dry run
+          command: |
+            npx semantic-release --branch ${CIRCLE_BRANCH} --dry-run
+
+  release:
+    docker:
+      - image: circleci/node:lts
+    steps:
+      - checkout
+      - run:
+          name: Build and Release
+          command: |
+            npx semantic-release --branch ${CIRCLE_BRANCH} --dry-run
+            next_version=$(npx semantic-release --branch ${CIRCLE_BRANCH} --dry-run | grep "The next release version is" | sed -n -e 's/^.*is //p')
+            sed -i "s/THE_ORB_VERSION\"${next_version}\"/g" thing-with-version.yaml
+            # npx semantic-release --branch ${CIRCLE_BRANCH}
+
+workflows:
+  version: 2
+  build_test_release:
+    jobs:
+      - build_and_test
+      - release:
+          context: nodejs-lib-release
+          requires:
+            - build_and_test
+          filters:
+            branches:
+              only: master
+              
