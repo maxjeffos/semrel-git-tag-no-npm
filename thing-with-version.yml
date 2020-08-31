@@ -20,7 +20,7 @@ commands:
                     echo "ORB_VERSION: ${ORB_VERSION}"
                 environment:
                     MY_ENV_VAR: CIRCLECI_ORB
-                    ORB_VERSION: REPLACE_ORB_VERSION
+                    ORB_VERSION: 0.0.2
                 name: Show Message
 examples:
     example:
