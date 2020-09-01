@@ -19,6 +19,35 @@ jobs:
           command: |
             npx -p @semantic-release/git -p semantic-release semantic-release --branch ${CIRCLE_BRANCH} --dry-run
 
+
+  test-conditionals:
+    docker:
+      - image: cimg/base:stable-20.04 
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+          name: Build and Test
+          command: |
+            echo "build stuff here"
+
+      - when:
+          condition: 0
+          steps:
+            - run:
+                name: Should run only if 0 is truthy
+                command: |
+                  echo "Should run only if 0 is truthy"
+      
+      - when:
+          condition: 1
+          steps:
+            - run:
+                name: Should run only if 1 is considered truthy
+                command: |
+                  echo "Should run only if 1 is considered truthy"
+
+
   release:
     docker:
       - image: circleci/node:lts
@@ -38,16 +67,16 @@ jobs:
               sed -i "s|REPLACE_ORB_VERSION|${next_version}|g" thing-with-version.yml
               echo "modified yaml file:"
               # cat thing-with-version.yml
-              npx semantic-release --branch ${CIRCLE_BRANCH}
+              npx -p @semantic-release/git -p semantic-release semantic-release --branch ${CIRCLE_BRANCH}
             else
               echo "don't do release"
             fi
-
 
 workflows:
   version: 2
   build_test_release:
     jobs:
+      - test-conditionals
       - build_and_test
       - release:
           requires:
