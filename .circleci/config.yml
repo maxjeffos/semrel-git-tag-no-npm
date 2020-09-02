@@ -79,6 +79,22 @@ jobs:
                 command: |
                   echo "Should run only if empty text from command is truthy"
 
+      - when:
+          condition: $(echo "")
+          steps:
+            - run:
+                name: Should run only if empty text from command is truthy (double quotes)
+                command: |
+                  echo "Should run only if empty text from command is truthy (double quotes)"
+                  
+#       - when:
+#           condition: $(grep "The next release version is" sem-rel-dry-run.txt)
+#           steps:
+#             - run:
+#                 name: Should run only if matching string is found in README.md
+#                 command: |
+#                   echo "Should run only if matching string is found in README.md"
+
   release:
     docker:
       - image: circleci/node:lts
