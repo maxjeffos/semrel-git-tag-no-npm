@@ -19,6 +19,22 @@ jobs:
           command: |
             npx -p @semantic-release/git -p semantic-release semantic-release --branch ${CIRCLE_BRANCH} --dry-run
 
+  test-save-env-var-between-steps:
+      docker:
+      - image: cimg/base:stable-20.04 
+    working_directory: ~/repo
+    steps:
+      - run:
+          name: Set env var and save to bashenv
+          command: |
+            export some_var=abc
+            echo "some_var=${some_var}"
+            echo "export some_var=\"${some_var}\"" >> $BASH_ENV
+
+      - run:
+          name: See if env var is set
+          command: |
+            echo "some_var=${some_var}"
 
   test-conditionals:
     docker:
@@ -154,6 +170,7 @@ workflows:
   version: 2
   build_test_release:
     jobs:
+      - test-save-env-var-between-steps
       - test-conditionals
       - build_and_test
       - release:
