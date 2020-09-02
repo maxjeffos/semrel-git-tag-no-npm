@@ -2,7 +2,7 @@
   "plugins": [
     "@semantic-release/commit-analyzer",
     ["@semantic-release/git", {
-      "assets": ["thing-with-version.yml"],
+      "assets": false,
       "message": "chore(release): ${nextRelease.version}"
     }]
   ]
