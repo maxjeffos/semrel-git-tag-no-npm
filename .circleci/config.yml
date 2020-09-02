@@ -91,7 +91,22 @@ jobs:
                 name: Should run only if empty text from command is truthy (double quotes)
                 command: |
                   echo "Should run only if empty text from command is truthy (double quotes)"
-                  
+
+      - when:
+          condition: $TEST_ENV_VAR_0
+          steps:
+            - run:
+                name: Should run only if TEST_ENV_VAR_0 is truthy (double quotes)
+                command: |
+                  echo "Should run only if TEST_ENV_VAR_0 is truthy (double quotes)"
+
+      - when:
+          condition: $TEST_ENV_VAR_1
+          steps:
+            - run:
+                name: Should run only if TEST_ENV_VAR_1 is truthy (double quotes)
+                command: |
+                  echo "Should run only if TEST_ENV_VAR_1 is truthy (double quotes)"
 #       - when:
 #           condition: $(grep "The next release version is" sem-rel-dry-run.txt)
 #           steps:
