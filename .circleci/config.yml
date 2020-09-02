@@ -107,13 +107,24 @@ jobs:
                 name: Should run only if TEST_ENV_VAR_1 is truthy (double quotes)
                 command: |
                   echo "Should run only if TEST_ENV_VAR_1 is truthy (double quotes)"
-#       - when:
-#           condition: $(grep "The next release version is" sem-rel-dry-run.txt)
-#           steps:
-#             - run:
-#                 name: Should run only if matching string is found in README.md
-#                 command: |
-#                   echo "Should run only if matching string is found in README.md"
+
+      - when:
+          condition: 
+            equal: [ 0, $TEST_ENV_VAR_0 ]
+          steps:
+            - run:
+                name: Should run only if 0 equals TEST_ENV_VAR_0 is truthy (double quotes)
+                command: |
+                  echo "Should run only if 0 equals TEST_ENV_VAR_0 is truthy (double quotes)"
+
+      - when:
+          condition: 
+            equal: [ 1, $TEST_ENV_VAR_0 ]
+          steps:
+            - run:
+                name: Should run only if 1 equals TEST_ENV_VAR_0 is truthy (double quotes)
+                command: |
+                  echo "Should run only if 1 equals TEST_ENV_VAR_0 is truthy (double quotes)"
 
   release:
     docker:
