@@ -20,7 +20,7 @@ jobs:
             npx -p @semantic-release/git -p semantic-release semantic-release --branch ${CIRCLE_BRANCH} --dry-run
 
   test-save-env-var-between-steps:
-      docker:
+    docker:
       - image: cimg/base:stable-20.04 
     working_directory: ~/repo
     steps:
