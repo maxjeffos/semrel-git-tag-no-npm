@@ -63,6 +63,14 @@ jobs:
                 command: |
                   echo "Should run only if empty text is truthy"
 
+     - when:
+          condition: $(echo "something")
+          steps:
+            - run:
+                name: Should run only if non-empty text output from command is truthy
+                command: |
+                  echo "Should run only if non-empty text output from command is truthy"
+
   release:
     docker:
       - image: circleci/node:lts
