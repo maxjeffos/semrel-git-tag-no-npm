@@ -70,6 +70,14 @@ jobs:
                 name: Should run only if non-empty text from command is truthy
                 command: |
                   echo "Should run only if non-empty text from command is truthy"
+                  
+      - when:
+          condition: $(echo '')
+          steps:
+            - run:
+                name: Should run only if empty text from command is truthy
+                command: |
+                  echo "Should run only if empty text from command is truthy"
 
   release:
     docker:
