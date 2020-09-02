@@ -47,6 +47,21 @@ jobs:
                 command: |
                   echo "Should run only if 1 is considered truthy"
 
+      - when:
+          condition: "something"
+          steps:
+            - run:
+                name: Should run only if non-empty text is truthy
+                command: |
+                  echo "Should run only if non-empty text is truthy"
+
+      - when:
+          condition: ""
+          steps:
+            - run:
+                name: Should run only if empty text is truthy
+                command: |
+                  echo "Should run only if empty text is truthy"
 
   release:
     docker:
